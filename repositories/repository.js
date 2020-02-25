@@ -18,7 +18,7 @@ module.exports = class Repository {
     attrs.id = this.randomId();
 
     const records = await this.getAll();
-    records.push(attr);
+    records.push(attrs);
     await this.writeAll(records);
 
     return attrs;
@@ -30,13 +30,6 @@ module.exports = class Repository {
         encoding: 'utf8'
       })
     );
-  }
-
-  async comparePasswords(saved, supplied) {
-    const [hashed, salt] = saved.split('.');
-    const hashedSuppliedBuf = await scrypt(supplied, salt, 64);
-
-    return hashed === hashedSuppliedBuf.toString('hex');
   }
 
   async writeAll(records) {

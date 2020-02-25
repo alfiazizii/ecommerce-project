@@ -34,6 +34,7 @@ module.exports = {
       if (confirmPassword !== req.body.password) {
         throw new Error('Password does not match');
       }
+      return true;
     }),
   requireEmailExists: check('email')
     .trim()
